@@ -1,0 +1,100 @@
+
+<div class="col-md-12">
+  <form class="qr-generator my-3">
+
+  <fieldset class="form-group border p-3">
+    <legend class="w-auto px-2">
+      Basic settings<strong class="text-danger">*</strong>
+    </legend>
+    <div class="form-group">
+      <label for="basicText">Text</label>
+      <input type="text" class="form-control" id="basicText" aria-describedby="basicTextHelp" required />
+      <small id="basicTextHelp" class="form-text text-muted">
+        The main content of the QR code. E.g an url or a message, etc.
+      </small>
+    </div>
+    <div class="form-group form-row">
+      <div class="col-md-6">
+        <label for="basicWidth">Width</label>
+        <input type="text" class="form-control" id="basicWidth" aria-describedby="basicWidthHelp" required />
+        <small id="basicWidthHelp" class="form-text text-muted">
+          The main size of the QR code.
+        </small>
+      </div>
+      <div class="col-md-6">
+        <label for="basicHeight">Height</label>
+        <input type="text" class="form-control" id="basicHeight" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="basicEqualSizes" aria-describedby="basicEqualSizesHelp" required />
+        <label class="form-check-label" for="basicEqualSizes">
+          Make the width and height the same
+        </label>
+        <small id="basicEqualSizesHelp" class="form-text text-muted">
+          If the checkbox is checked, the widt hand height can be 
+          defined differently. Otherwise  both size will be the same.
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="basicColorDark">Dark colors</label>
+      <input type="color" class="form-control orm-control-color col-md-1" id="basicColorDark" aria-describedby="basicColorDarkHelp" value="#000000" title="Choose your dark color" required />
+      <small id="basicColorDarkHelp" class="form-text text-muted">
+        The color for the dark areas.
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="basicColorLight">Light colors</label>
+      <input type="color" class="form-control orm-control-color col-md-1" id="basicColorLight" aria-describedby="basicColorLightHelp" value="#ffffff" title="Choose your light color" required />
+      <small id="basicColorLightHelp" class="form-text text-muted">
+        The color for the dark areas.
+      </small>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-group border p-3">
+    <legend class="w-auto px-2">Additional settings</legend>
+    title and subtitle settings (title, font size, color, height)
+  </fieldset>
+
+  <fieldset class="form-group border p-3">
+    <legend class="w-auto px-2">Background settings</legend>
+    image, dark and light color, image alpha, auto color adjusment
+  </fieldset>
+
+  <fieldset class="form-group border p-3">
+    <legend class="w-auto px-2">Logo settings</legend>
+    logo image, size, background color, background transparency (alpha)
+  </fieldset>
+
+  <fieldset class="form-group border p-3">
+    <legend class="w-auto px-2">dotScale settings</legend>
+    turn it on or off with defaults
+  </fieldset>
+
+  <fieldset class="form-group border p-3">
+    <legend class="w-auto px-2">Other color settings</legend>
+    quiet zone color, quiet zone transparency, outer position color,
+    inner position color, outer position coordinates (top right, top let, bottom left),
+    alignment colors (alignment inner, outer colors)
+  </fieldset>
+
+  <button type="submit" class="btn btn-primary">Generate QR code</button>
+  <button type="button" class="btn btn-info">Resize QR code</button>
+  <button type="reset" class="btn btn-danger">Clear QR code</button>
+
+  </form>
+</div>
+<!--
+    text
+    logo url
+    background color OR transparent
+    title /size, color, background-color/
+    subtitle /size, color, background-color/
+
+    generate CTA
+    reset CTA
+    resize CTA /input number + cta/
+-->

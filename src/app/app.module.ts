@@ -5,10 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { JumbotronComponent } from './jumbotron/jumbotron.component';
+import { QrCodeComponent } from './qr-code/qr-code.component';
+import { QrPreviewComponent } from './qr-preview/qr-preview.component';
+import { QrFormComponent } from './qr-form/qr-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    JumbotronComponent,
+    QrCodeComponent,
+    QrPreviewComponent,
+    QrFormComponent
   ],
   imports: [
     BrowserModule,

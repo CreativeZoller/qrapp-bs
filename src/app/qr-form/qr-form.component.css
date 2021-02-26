@@ -1,0 +1,9 @@
+:host,
+.qr-generator {
+  width: 100%;
+}
+
+fieldset {
+  border-radius: .25rem;
+  background-color: #f9f9f9;
+}

@@ -1,0 +1,8 @@
+.navbar {
+  padding: 1rem 1rem;
+}
+
+.navbar .navbar-brand .small-text {
+  font-size: 70% !important;
+  font-weight: 300 !important;
+}
