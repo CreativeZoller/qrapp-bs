@@ -6,19 +6,20 @@
   <div class="py-5">
     <div class="container">
       <div class="row">
-        <app-qr-form></app-qr-form>
+        <div class="col-md-8">
+          <app-qr-form></app-qr-form>
+        </div>
+        <div class="col-md-4">
+          <app-qr-preview></app-qr-preview>
+        </div>
       </div>
     </div>
   </div>
 
-<!-- TODO: add bootstrap js to include in app -->
-  <div class="py-5 bg-info" *ngIf="isCreated"><!-- TODO: only show if the code is generated without problems -->
+  <div class="py-5 bg-info" *ngIf="isCreated">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <app-qr-preview></app-qr-preview>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
           <app-qr-code></app-qr-code>
         </div>
       </div>

@@ -7,3 +7,7 @@ fieldset {
   border-radius: .25rem;
   background-color: #f9f9f9;
 }
+
+button + button {
+  margin-left: 15px;
+}

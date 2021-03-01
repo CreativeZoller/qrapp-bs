@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./qr-form.component.css']
 })
 export class QrFormComponent implements OnInit {
+  onlyBasicVisible = true;
+
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {}
+
+  showMoreSettings(): void {
+    this.onlyBasicVisible = !this.onlyBasicVisible;
   }
 
+  resetForm(): void {
+    this.showMoreSettings();
+  }
+
+    // TODO: add jQuery before Botstrap in order it to work properly
 }
