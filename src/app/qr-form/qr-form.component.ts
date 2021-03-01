@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QrFormComponent implements OnInit {
   onlyBasicVisible = true;
+  qrCodeSettings = {};
 
 
   constructor() { }
@@ -21,5 +22,5 @@ export class QrFormComponent implements OnInit {
     this.showMoreSettings();
   }
 
-    // TODO: add jQuery before Botstrap in order it to work properly
+    // TODO: add jQuery before Bootstrap in order it to work properly
 }
