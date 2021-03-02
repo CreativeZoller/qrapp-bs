@@ -37,7 +37,7 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    var options = {
+    const options = {
       text: "https://github.com/ushelp/EasyQRCodeJS"
     }
   }
@@ -67,6 +67,7 @@ export class QrFormComponent implements OnInit, AfterViewInit {
 
   resetForm(): void {
     this.showMoreSettings();
+    this.qrCodeSettings = {};
   }
 
   qrCodeSubmit() {
@@ -109,6 +110,6 @@ export class QrFormComponent implements OnInit, AfterViewInit {
       this.qrCodeSettings = { ...this.qrCodeSettings, colorLight: '#ffffff' }
     }
 
-    new QRCode(this.qrcode.nativeElement, this.qrCodeSettings);
+    if (this.codeErrors < 1) new QRCode(this.qrcode.nativeElement, this.qrCodeSettings);
   }
 }
