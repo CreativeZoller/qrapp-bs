@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-qr-form',
@@ -8,19 +9,40 @@ import { Component, OnInit } from '@angular/core';
 export class QrFormComponent implements OnInit {
   onlyBasicVisible = true;
   qrCodeSettings = {};
+  qrCodeForm!: FormGroup;
+  codeSubmitted = false;
+  codeErrors: number = 0;
 
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.qrCodeForm = this.fb.group(
+      {
+        basicText: ['', [Validators.required, , Validators.minLength(4)]],
+      },
+      { updateOn: 'change' }
+    );
+  }
 
   showMoreSettings(): void {
     this.onlyBasicVisible = !this.onlyBasicVisible;
+  }
+
+  get basicText() {
+    return this.qrCodeForm.get('basicText');
   }
 
   resetForm(): void {
     this.showMoreSettings();
   }
 
-    // TODO: add jQuery before Bootstrap in order it to work properly
+  qrCodeSubmit() {
+    let formValues;
+    formValues = this.qrCodeForm.getRawValue();
+    console.dir(formValues);
+    // TODO: finish this
+  }
 }

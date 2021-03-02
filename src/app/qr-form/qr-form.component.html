@@ -1,4 +1,4 @@
-<form class="qr-generator my-3">
+<form class="qr-generator my-3" [formGroup]="qrCodeForm" (ngSubmit)="qrCodeSubmit()">
 
 <fieldset class="form-group border p-3" id="basicSettings">
   <legend class="w-auto px-2">

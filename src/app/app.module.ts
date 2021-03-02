@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -11,6 +10,7 @@ import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
 import { QrPreviewComponent } from './qr-preview/qr-preview.component';
 import { QrFormComponent } from './qr-form/qr-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,8 @@ import { QrFormComponent } from './qr-form/qr-form.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
