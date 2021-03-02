@@ -14,6 +14,7 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   qrCodeForm!: FormGroup;
   codeSubmitted = false;
   codeErrors: number = 0;
+  showOriginal = false;
 
 
   constructor(
@@ -71,6 +72,7 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   }
 
   qrCodeSubmit() {
+    this.codeSubmitted = true;
     let formValues;
     formValues = this.qrCodeForm.getRawValue();
 
