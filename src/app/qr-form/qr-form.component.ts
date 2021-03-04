@@ -12,9 +12,11 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   onlyBasicVisible = true;
   qrCodeSettings = <any>{};
   qrCodeForm!: FormGroup;
-  codeSubmitted = false;
+  submitted = false;
   codeErrors: number = 0;
   showOriginal = false;
+  originalCanvas: any;
+  destinationCanvas: any;
 
 
   constructor(
@@ -24,10 +26,8 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.qrCodeForm = this.fb.group(
       {
-        basicText: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(256)]],
-        basicWidth: ['256', [Validators.required, Validators.min(0), Validators.max(1024)]],
-        basicHeight: ['256', [Validators.min(0), Validators.max(1024)]],
-        basicEqualSizes: ['', []],
+        basicText: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(256)]],
+        basicWidth: ['', [Validators.required, Validators.min(340), Validators.max(1024)]],
         basicColorDark: ['#000000', [Validators.pattern('^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$')]],
         basicColorLight: ['#ffffff', [Validators.pattern('^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$')]],
         },  
@@ -53,12 +53,6 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   get basicWidth() {
     return this.qrCodeForm.get('basicWidth');
   }
-  get basicHeight() {
-    return this.qrCodeForm.get('basicHeight');
-  }
-  get basicEqualSizes() {
-    return this.qrCodeForm.get('basicEqualSizes');
-  }
   get basicColorDark() {
     return this.qrCodeForm.get('basicColorDark');
   }
@@ -69,35 +63,31 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   resetForm(): void {
     this.showMoreSettings();
     this.qrCodeSettings = {};
+    if (this.destinationCanvas && this.destinationCanvas.hasChildNodes()) {
+      this.destinationCanvas.removeChild(this.destinationCanvas.childNodes[0]);
+    }
   }
 
   qrCodeSubmit() {
-    this.codeSubmitted = true;
+    this.submitted = true;
     let formValues;
     formValues = this.qrCodeForm.getRawValue();
 
+    if (this.qrCodeForm.invalid) {
+      return;
+    }
+
     if (formValues.basicText) { // title check
-      if (formValues.basicText.length > 4 || formValues.basicText.length < 260) {
+      if (formValues.basicText.length >= 4 || formValues.basicText.length <= 260) {
         this.qrCodeSettings = { ...this.qrCodeSettings, text: formValues.basicText }
       } else { this.codeErrors++ }
     }
 
     if (formValues.basicWidth) { // width check
-      if (formValues.basicWidth < 1024 || formValues.basicWidth > 0) {
+      if (formValues.basicWidth <= 1024 || formValues.basicWidth >= 340) {
         this.qrCodeSettings = { ...this.qrCodeSettings, width: formValues.basicWidth }
-      } else { this.codeErrors++ }
-    }
-
-    if (formValues.basicEqualSizes) { // height and size check
-      if (formValues.basicWidth < 1024 || formValues.basicWidth > 0) {
         this.qrCodeSettings = { ...this.qrCodeSettings, height: formValues.basicWidth }
       } else { this.codeErrors++ }
-    } else {
-      if (formValues.basicHeight) {
-        if (formValues.basicHeight < 1024 || formValues.basicHeight > 0) {
-          this.qrCodeSettings = { ...this.qrCodeSettings, height: formValues.basicHeight }
-        } else { this.codeErrors++ }
-      }      
     }
 
     if (formValues.basicColorDark) { // dark color check
@@ -112,6 +102,58 @@ export class QrFormComponent implements OnInit, AfterViewInit {
       this.qrCodeSettings = { ...this.qrCodeSettings, colorLight: '#ffffff' }
     }
 
-    if (this.codeErrors < 1) new QRCode(this.qrcode.nativeElement, this.qrCodeSettings);
+    this.createCode();
+  }
+
+  createCode() {
+    if (this.codeErrors == 0) {
+      const canvasIsFine = this.checkCanvas();
+      if (canvasIsFine) {
+        this.drawCode(this.qrCodeSettings);
+      }
+    }
+  }
+
+  checkCanvas() {
+    const originalContent = document.querySelectorAll('canvas');
+    if (originalContent.length > 0) {
+      originalContent[0].remove();
+      return true;
+    } else {
+      return true;
+    }
+  }
+
+  drawCode(options: any) {
+    new QRCode(this.qrcode.nativeElement, options);
+    if (document.querySelector('canvas')) {
+      this.originalCanvas = document.querySelector('canvas');
+      this.checkDimensions(this.originalCanvas);
+    }
+  }
+
+  checkDimensions(canvas: any) {
+    const width = canvas.width;
+    const height = canvas.height;
+    if (width === height) {
+      this.cloneCanvas(document.getElementById('previewCanvas'));
+    } else {
+      canvas.height = canvas.width;
+      this.cloneCanvas(document.getElementById('previewCanvas'));
+    }
+  }
+
+  cloneCanvas(identifier: any) {
+    this.destinationCanvas = identifier;
+    const destination = this.destinationCanvas;
+    if (destination.hasChildNodes()) {
+      destination.removeChild(destination.childNodes[0]);
+    }
+    let image = new Image();
+    image.className = 'img-fluid';
+    image.src = this.originalCanvas.toDataURL();
+    if (destination) {
+      destination.appendChild(image);
+    }
   }
 }

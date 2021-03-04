@@ -11,9 +11,16 @@
   margin-top: 2rem;
 }
 
-.card .card-img-top {
-  font-size: 1.125rem;
-  text-anchor: middle;
+.card .card-img-top-holder {
+  background-color: rgba(0,0,0,.125);
+  position: relative;
+  border-radius: .25rem;
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  display: block;
+  overflow: hidden;
 }
 
 .card .text-muted {
