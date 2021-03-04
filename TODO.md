@@ -3,7 +3,7 @@
 
 ## _Current version 0.0.1_
 
-build badge's future place
+![Travis CI build]([http://url/to/img.png](https://travis-ci.com/CreativeZoller/qrapp-bs.svg?branch=master))
 
 Qrapp-bs is currently in an MVP state. There could be a lot of bugs, which would need issues to be created on github. However this documentation is only for listing purposes for the work to be done or would be good to have features, developments, additions, etc.
 

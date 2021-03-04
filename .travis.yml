@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "14.15.4"
+before_install:
+  - rm -rf node_modules
+  - npm install -g angular-cli
+install:
+  - ./install.sh
