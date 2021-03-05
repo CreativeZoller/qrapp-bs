@@ -10,11 +10,19 @@
   ],
   "private": false,
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CreativeZoller/qrapp-bs.git"
+  },
   "author": {
     "name": "Zoltan Belicza",
     "email": "hello@zoltanbelicza.eu",
     "url": "https://zoltanbelicza.eu/"
   },
+  "bugs": {
+    "url": "https://github.com/CreativeZoller/qrapp-bs/issues"
+  },
+  "homepage": "https://github.com/CreativeZoller/qrapp-bs#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -22,6 +30,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "postinstall": "npm prune",
     "start-pwa": "ng build --prod && http-server -p 8080 -c-1 dist/qrapp-bs",
     "predeploy": "ng build --prod --base-href=/qrapp-bs/",
     "deploy": "npx gh-pages -d dist/qrapp-bs"
