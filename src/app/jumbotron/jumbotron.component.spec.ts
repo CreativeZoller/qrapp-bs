@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { JumbotronComponent } from './jumbotron.component';
 
 describe('JumbotronComponent', () => {
@@ -8,7 +8,10 @@ describe('JumbotronComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JumbotronComponent ]
+      declarations: [ JumbotronComponent ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
     })
     .compileComponents();
   });

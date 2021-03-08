@@ -1,87 +1,89 @@
 <form class="qr-generator my-3" [formGroup]="qrCodeForm" (ngSubmit)="qrCodeSubmit()">
 
-<fieldset class="form-group border p-3" id="basicSettings">
-  <legend class="w-auto px-2">
-    Basic settings
-  </legend>
-  <div class="form-group form-row">
-    <div class="col-md-12">
-      <label for="basicText">Text</label>
-      <input 
-        type="text"
-        class="form-control"
-        id="basicText"
-        aria-describedby="basicTextHelp"
-        [formControlName]="'basicText'"
-        [ngClass]="{ 'is-invalid': submitted && basicText.invalid && basicText.errors }"
-        required />
+  <fieldset class="form-group border p-3" id="basicSettings">
+    <legend class="w-auto px-2">
+      Basic settings
+    </legend>
+    <div class="form-group row">
+      <label for="basicText" class="col-form-label">Text</label>
+      <div class="col-md-12">
+        <input 
+          type="text"
+          class="form-control"
+          aria-describedby="basicTextHelp"
+          [formControlName]="'basicText'"
+          [ngClass]="{ 'is-invalid': submitted && basicText.invalid && basicText.errors }"
+        />
+      </div>
       <small id="basicTextHelp" class="form-text text-muted">
         The main content of the QR code. E.g an url or a message, etc.
       </small>
-      <div *ngIf="basicText.dirty && basicText.errors?.required" class="invalid-feedback">
+      <div *ngIf="basicText.dirty && basicText.errors?.required" class="invalid-feedback d-block">
         The Text field is required
       </div>
-      <div *ngIf="basicText.dirty && basicText.errors?.minLength" class="invalid-feedback">
+      <div *ngIf="basicText.dirty && basicText.errors?.minLength" class="invalid-feedback d-block">
         The Text field must contain 5 letters at least
       </div>
-      <div *ngIf="basicText.dirty && basicText.errors?.maxLength" class="invalid-feedback">
+      <div *ngIf="basicText.dirty && basicText.errors?.maxLength" class="invalid-feedback d-block">
         The Text field can contain 256 letters maximum
       </div>
     </div>
-  </div>
-  <div class="form-group form-row">
-    <div class="col-md-12">
-      <label for="basicWidth">Width</label>
-      <input 
-        type="number"
-        class="form-control"
-        id="basicWidth"
-        aria-describedby="basicWidthHelp"
-        [formControlName]="'basicWidth'"
-        [ngClass]="{ 'is-invalid': submitted && basicWidth.invalid && basicWidth.errors }"
-        required />
+    <div class="form-group row">
+      <label for="basicWidth" class="col-form-label">Width</label>
+      <div class="col-md-12">
+        <input 
+          type="number"
+          class="form-control"
+          aria-describedby="basicWidthHelp"
+          [formControlName]="'basicWidth'"
+          [ngClass]="{ 'is-invalid': submitted && basicWidth.invalid && basicWidth.errors }"
+        />
+      </div>
       <small id="basicWidthHelp" class="form-text text-muted">
         The main size of the QR code sides in pixels.
         The width will be equal to the height of the QR code.
       </small>
-      <div *ngIf="basicWidth.dirty && basicWidth.errors?.required" class="invalid-feedback">
+      <div *ngIf="basicWidth.dirty && basicWidth.errors?.required" class="invalid-feedback d-block">
         The Width field is required
       </div>
-      <div *ngIf="basicWidth.dirty && basicWidth.errors?.min" class="invalid-feedback">
+      <div *ngIf="basicWidth.dirty && basicWidth.errors?.min" class="invalid-feedback d-block">
         The Width field must be equal to or bigger than 340
       </div>
-      <div *ngIf="basicWidth.dirty && basicWidth.errors?.max" class="invalid-feedback">
+      <div *ngIf="basicWidth.dirty && basicWidth.errors?.max" class="invalid-feedback d-block">
         The Width field must be equal to or smaller than 1024
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="basicColorDark">Dark colors</label>
-    <input 
-      type="color"
-      class="form-control orm-control-color col-md-1"
-      id="basicColorDark"
-      aria-describedby="basicColorDarkHelp"
-      title="Choose your dark color"
-      [formControlName]="'basicColorDark'" />
-    <small id="basicColorDarkHelp" class="form-text text-muted">
-      The color for the dark areas.
-    </small>
-  </div>
-  <div class="form-group">
-    <label for="basicColorLight">Light colors</label>
-    <input 
-      type="color"
-      class="form-control orm-control-color col-md-1"
-      id="basicColorLight"
-      aria-describedby="basicColorLightHelp"
-      title="Choose your light color"
-      [formControlName]="'basicColorLight'" />
-    <small id="basicColorLightHelp" class="form-text text-muted">
-      The color for the dark areas.
-    </small>
-  </div>
-</fieldset>
+    <div class="form-group row">
+      <label for="basicColorDark" class="col-form-label">Dark colors</label>
+      <div class="col-md-12">
+        <input 
+          type="color"
+          class="form-control form-control-color col-md-1"
+          aria-describedby="basicColorDarkHelp"
+          title="Choose your dark color"
+          [formControlName]="'basicColorDark'"
+        />
+      </div>
+      <small id="basicColorDarkHelp" class="form-text text-muted">
+        The color for the dark areas.
+      </small>
+    </div>
+    <div class="form-group row">
+      <label for="basicColorLight" class="col-form-label">Light colors</label>
+      <div class="col-md-12">
+        <input 
+          type="color"
+          class="form-control form-control-color col-md-1"
+          aria-describedby="basicColorLightHelp"
+          title="Choose your light color"
+          [formControlName]="'basicColorLight'"
+        />
+      </div>
+      <small id="basicColorLightHelp" class="form-text text-muted">
+        The color for the dark areas.
+      </small>
+    </div>
+  </fieldset>
 
 <!--
 <fieldset class="form-group border p-3" id="additionalSettings" *ngIf="!onlyBasicVisible">

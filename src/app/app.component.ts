@@ -10,8 +10,9 @@ export class AppComponent implements OnInit {
   isCreated = false;
   isFailed = false;
   qrErrors: number = 0;
+  title = 'qrapp-bs';
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (isDevMode()) {
       console.log('👋 Development!');
     } else {
