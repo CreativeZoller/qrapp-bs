@@ -3,6 +3,15 @@
   width: 100%;
 }
 
+.qr-generator .row {
+  padding-right: 1rem !important;
+  padding-left: 1rem !important;
+}
+
+.qr-generator .row .col-md-12 {
+  padding: 0 !important;
+}
+
 fieldset {
   border-radius: .25rem;
   background-color: #f9f9f9;

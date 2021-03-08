@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { QrPreviewComponent } from './qr-preview.component';
 
 describe('QrPreviewComponent', () => {
@@ -8,7 +8,10 @@ describe('QrPreviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QrPreviewComponent ]
+      declarations: [ QrPreviewComponent ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
     })
     .compileComponents();
   });

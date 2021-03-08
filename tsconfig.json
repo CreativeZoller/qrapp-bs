@@ -11,6 +11,7 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
@@ -21,8 +22,10 @@
       "dom"
     ],
     "types": [ 
+      "bootstrap",
       "jquery",
-      "node"
+      "node",
+      "jest"
     ],
     "typeRoots": [ "./node_modules/@types" ],
   },

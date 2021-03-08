@@ -12,12 +12,12 @@ Qrapp-bs is currently in an MVP state. There could be a lot of bugs, which would
 - check and fix the template-part validation message malfunctions
 - check and fix clear/reset post style issues with form field validation
 - add Husky pre-commit check
-- add project to TravisCI, if working properly, add badge to the top section of this document
+- add project to TravisCI, if working properly, add badge to the top section of this document (unit test causing the issue)
 - add proper download functionality as PNG image
 - dynamically generate timestamp at drawing time to show under preview image
 - add advanced options to the create form
 - add proper validation to the advanced parts
-- add proper unit testing with Jest to the project
+- add proper unit testing fix to the project
 - add coverage report after unit testing is properly implemented
 - add multilingual support to the app
 

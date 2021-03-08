@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA, isDevMode } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
@@ -5,11 +6,12 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+      imports: [],
       declarations: [
         AppComponent
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
       ],
     }).compileComponents();
   });
@@ -24,5 +26,13 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('qrapp-bs');
+  });
+
+  it(`should have some predefined variables'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.isCreated).toBeFalsy();
+    expect(app.isFailed).toBeFalsy();
+    expect(app.qrErrors).toEqual(0);
   });
 });
