@@ -9,11 +9,11 @@ Qrapp-bs is currently in an MVP state. There could be a lot of bugs, which would
 
 ## Work to be done
 
+- dynamically generate timestamp at drawing time to show under preview image
+- add proper download functionality as PNG image
+- add Husky pre-commit check
 - check and fix the template-part validation message malfunctions
 - check and fix clear/reset post style issues with form field validation
-- add Husky pre-commit check
-- add proper download functionality as PNG image
-- dynamically generate timestamp at drawing time to show under preview image
 - add advanced options to the create form
 - add proper validation to the advanced parts
 - add proper unit testing fix to the project

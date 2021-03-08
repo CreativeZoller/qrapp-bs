@@ -11,6 +11,7 @@ import { QrCodeComponent } from './qr-code/qr-code.component';
 import { QrPreviewComponent } from './qr-preview/qr-preview.component';
 import { QrFormComponent } from './qr-form/qr-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     QrFormComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
