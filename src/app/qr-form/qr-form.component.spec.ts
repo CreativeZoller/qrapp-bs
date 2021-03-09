@@ -2,12 +2,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { QrFormComponent } from './qr-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('QrFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule
       ],
       declarations: [
         QrFormComponent

@@ -1,6 +1,10 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import QRCode from "easyqrcodejs";
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CallService } from '../call.service';
+import { DateTime } from 'luxon';
+import QRCode from 'easyqrcodejs';
+
 
 @Component({
   selector: 'app-qr-form',
@@ -17,11 +21,20 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   showOriginal = false;
   originalCanvas: any;
   destinationCanvas: any;
+  ipAddress: any;
+  timeStamp: any;
 
 
   constructor(
     private fb: FormBuilder,
-  ) {}
+    public util: CallService,
+    private http: HttpClient
+  ) {
+    this.http.get<{IPv4:string}>('https://geoip-db.com/json/')
+    .subscribe( data => {
+      this.ipAddress = data.IPv4
+    });
+  }
 
   ngOnInit(): void {
     this.qrCodeForm = this.fb.group(
@@ -155,5 +168,14 @@ export class QrFormComponent implements OnInit, AfterViewInit {
     if (destination) {
       destination.appendChild(image);
     }
+
+    this.finalize();
+  }
+
+  finalize(): void {
+    this.timeStamp = DateTime.now().toLocaleString({ hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false, year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\s/g, '');
+    const downloadName = 'qrcode.png';
+    const downloadFile = this.originalCanvas.toDataURL('image/png');
+    this.util.sendEmit([this.timeStamp, downloadName, downloadFile]);
   }
 }

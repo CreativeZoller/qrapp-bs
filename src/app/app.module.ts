@@ -11,6 +11,8 @@ import { QrCodeComponent } from './qr-code/qr-code.component';
 import { QrPreviewComponent } from './qr-preview/qr-preview.component';
 import { QrFormComponent } from './qr-form/qr-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CallService } from './call.service';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+    CallService
+  ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
 })

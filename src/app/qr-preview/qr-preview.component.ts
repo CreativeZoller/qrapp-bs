@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CallService } from '../call.service';
 
 @Component({
   selector: 'app-qr-preview',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./qr-preview.component.css'],
 })
 export class QrPreviewComponent implements OnInit {
+  public subscription: any;
+  updateTime: string = '';
+  fileName: string = '';
+  fileUrl: string = '';
 
-  constructor() { }
+  constructor(
+    public util: CallService
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.subscription = this.util.getEmit().subscribe(message => {      
+      this.updateTime = message[0];
+      this.fileName   = message[1];
+      this.fileUrl    = message[2];
+    });
   }
-
 }

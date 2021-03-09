@@ -1,18 +1,20 @@
 <div class="card">
   <div class="card-img-top-holder text-center" id="previewCanvas">
-    <!--<img id="previewCanvas" class="card-img-top" width="100%" height="180" />-->
   </div>
   <div class="card-body">
     <p class="card-text">
-      This is the preview of the generated QR code. Feel free to test it here. Also you can download it as PNG.
+      This is the preview of the generated QR code. Also you can download it as PNG.
     </p>
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center" *ngIf="updateTime">
       <div class="btn-group">
-        <a href="" title="Download generated QR code" download id="download-btn">
+        <a title="Download generated QR code" id="download-btn"
+          download="{{ fileName }}"
+          href="{{ fileUrl }}"
+        >
           <button type="button" class="btn btn-sm btn-outline-success">Download</button>
         </a>
       </div>
-      <small class="text-muted"><abbr title="Creation time of the generated QR code">UD</abbr>: 16:10 24.02.2021</small>
+      <small class="text-muted"><abbr title="Creation time of the generated QR code">UD</abbr>: {{ updateTime }}</small>
     </div>
   </div>
 </div>
