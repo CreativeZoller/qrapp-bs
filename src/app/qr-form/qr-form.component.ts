@@ -30,10 +30,10 @@ export class QrFormComponent implements OnInit, AfterViewInit {
     public util: CallService,
     private http: HttpClient
   ) {
-    // this.http.get<{IPv4:string}>('https://geoip-db.com/json/')
-    // .subscribe( data => {
-    //   this.ipAddress = data.IPv4
-    // });
+    this.http.get<{IPv4:string}>('https://geoip-db.com/json/')
+    .subscribe( data => {
+      this.ipAddress = data.IPv4
+    });
   }
 
   ngOnInit(): void {

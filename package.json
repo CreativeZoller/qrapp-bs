@@ -27,7 +27,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "test": "ng test --detect-open-handles",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "npm prune",
