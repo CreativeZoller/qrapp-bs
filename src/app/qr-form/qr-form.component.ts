@@ -23,6 +23,8 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   destinationCanvas: any;
   ipAddress: any;
   timeStamp: any;
+  baseTextDefaultValue = 'Please type in the main content of the code';
+  baseWidthDefaultValue = '420';
 
 
   constructor(
@@ -39,8 +41,8 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.qrCodeForm = this.fb.group(
       {
-        basicText: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(256)]],
-        basicWidth: ['', [Validators.required, Validators.min(340), Validators.max(1024)]],
+        basicText: [this.baseTextDefaultValue, [Validators.required, Validators.minLength(5), Validators.maxLength(256)]],
+        basicWidth: [this.baseWidthDefaultValue, [Validators.required, Validators.min(340), Validators.max(1024)]],
         basicColorDark: ['#000000', [Validators.pattern('^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$')]],
         basicColorLight: ['#ffffff', [Validators.pattern('^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$')]],
         },  
@@ -73,12 +75,18 @@ export class QrFormComponent implements OnInit, AfterViewInit {
     return this.qrCodeForm.get('basicColorLight');
   }
 
-  resetForm(): void {
-    this.showMoreSettings();
+  resetToDefaults() {
+    // this.showMoreSettings();
     this.qrCodeSettings = {};
     if (this.destinationCanvas && this.destinationCanvas.hasChildNodes()) {
       this.destinationCanvas.removeChild(this.destinationCanvas.childNodes[0]);
     }
+    this.qrCodeForm.patchValue({
+      basicText: this.baseTextDefaultValue,
+      basicWidth: this.baseWidthDefaultValue,
+      basicColorDark: '#000000',
+      basicColorLight: '#ffffff',
+    });
   }
 
   qrCodeSubmit() {
@@ -86,7 +94,11 @@ export class QrFormComponent implements OnInit, AfterViewInit {
     let formValues;
     formValues = this.qrCodeForm.getRawValue();
 
-    if (this.qrCodeForm.invalid) {
+    if (
+      this.qrCodeForm.invalid ||
+      formValues.basicText == this.baseTextDefaultValue ||
+      formValues.baseWidth == this.baseWidthDefaultValue
+      ) {
       return;
     }
 

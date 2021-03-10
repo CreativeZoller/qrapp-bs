@@ -18,14 +18,8 @@
       <small id="basicTextHelp" class="form-text text-muted">
         The main content of the QR code. E.g an url or a message, etc.
       </small>
-      <div *ngIf="basicText.dirty && basicText.errors?.required" class="invalid-feedback d-block">
-        The Text field is required
-      </div>
-      <div *ngIf="basicText.dirty && basicText.errors?.minLength" class="invalid-feedback d-block">
-        The Text field must contain 5 letters at least
-      </div>
-      <div *ngIf="basicText.dirty && basicText.errors?.maxLength" class="invalid-feedback d-block">
-        The Text field can contain 256 letters maximum
+      <div *ngIf="basicText.dirty && basicText?.errors" class="invalid-feedback d-block">
+        The Text field is required and must contain letter between 5 and 256
       </div>
     </div>
     <div class="form-group row">
@@ -43,14 +37,8 @@
         The main size of the QR code sides in pixels.
         The width will be equal to the height of the QR code.
       </small>
-      <div *ngIf="basicWidth.dirty && basicWidth.errors?.required" class="invalid-feedback d-block">
-        The Width field is required
-      </div>
-      <div *ngIf="basicWidth.dirty && basicWidth.errors?.min" class="invalid-feedback d-block">
-        The Width field must be equal to or bigger than 340
-      </div>
-      <div *ngIf="basicWidth.dirty && basicWidth.errors?.max" class="invalid-feedback d-block">
-        The Width field must be equal to or smaller than 1024
+      <div *ngIf="basicWidth.dirty && basicWidth?.errors" class="invalid-feedback d-block">
+        The Width field is required and must be between 340 and 1024
       </div>
     </div>
     <div class="form-group row">
@@ -119,7 +107,7 @@
     <!--<button type="button" class="btn btn-secondary" *ngIf="onlyBasicVisible" (click)="showMoreSettings()">Continue with other settings</button>-->
     <button type="submit" class="btn btn-primary">Generate QR code</button>
     <!--<button type="button" class="btn btn-info" *ngIf="!onlyBasicVisible">Resize QR code</button>-->
-    <button type="reset" class="btn btn-danger" (click)="resetForm()">Clear QR code</button>
+    <button type="button" class="btn btn-danger" (click)="resetToDefaults()">Clear QR code</button>
   </div>
 </div>
 
