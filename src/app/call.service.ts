@@ -9,7 +9,7 @@ export class CallService {
 
   constructor() { }
 
-  sendEmit(message: any) {
+  sendEmit(message: any | false) {
     this.subject.next(message);
   }
 

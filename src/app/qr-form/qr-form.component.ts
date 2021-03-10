@@ -21,8 +21,10 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   showOriginal = false;
   originalCanvas: any;
   destinationCanvas: any;
-  ipAddress: any;
+  // ipAddress: any;
   timeStamp: any;
+  baseTextDefaultValue = 'Please enter the content';
+  baseWidthDefaultValue = '420';
 
 
   constructor(
@@ -30,17 +32,17 @@ export class QrFormComponent implements OnInit, AfterViewInit {
     public util: CallService,
     private http: HttpClient
   ) {
-    this.http.get<{IPv4:string}>('https://geoip-db.com/json/')
-    .subscribe( data => {
-      this.ipAddress = data.IPv4
-    });
+    // this.http.get<{IPv4:string}>('https://geoip-db.com/json/')
+    // .subscribe( data => {
+    //   this.ipAddress = data.IPv4
+    // });
   }
 
   ngOnInit(): void {
     this.qrCodeForm = this.fb.group(
       {
-        basicText: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(256)]],
-        basicWidth: ['', [Validators.required, Validators.min(340), Validators.max(1024)]],
+        basicText: [this.baseTextDefaultValue, [Validators.required, Validators.minLength(5), Validators.maxLength(256)]],
+        basicWidth: [this.baseWidthDefaultValue, [Validators.required, Validators.min(340), Validators.max(1024)]],
         basicColorDark: ['#000000', [Validators.pattern('^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$')]],
         basicColorLight: ['#ffffff', [Validators.pattern('^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$')]],
         },  
@@ -73,12 +75,19 @@ export class QrFormComponent implements OnInit, AfterViewInit {
     return this.qrCodeForm.get('basicColorLight');
   }
 
-  resetForm(): void {
+  resetToDefaults() {
     this.showMoreSettings();
     this.qrCodeSettings = {};
     if (this.destinationCanvas && this.destinationCanvas.hasChildNodes()) {
       this.destinationCanvas.removeChild(this.destinationCanvas.childNodes[0]);
     }
+    this.util.sendEmit(false);
+    this.qrCodeForm.patchValue({
+      basicText: this.baseTextDefaultValue,
+      basicWidth: this.baseWidthDefaultValue,
+      basicColorDark: '#000000',
+      basicColorLight: '#ffffff',
+    });
   }
 
   qrCodeSubmit() {
@@ -86,7 +95,11 @@ export class QrFormComponent implements OnInit, AfterViewInit {
     let formValues;
     formValues = this.qrCodeForm.getRawValue();
 
-    if (this.qrCodeForm.invalid) {
+    if (
+      this.qrCodeForm.invalid ||
+      formValues.basicText == this.baseTextDefaultValue ||
+      formValues.baseWidth == this.baseWidthDefaultValue
+      ) {
       return;
     }
 

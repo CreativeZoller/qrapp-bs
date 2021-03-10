@@ -1,6 +1,5 @@
 <div class="card">
-  <div class="card-img-top-holder text-center" id="previewCanvas">
-  </div>
+  <div class="card-img-top-holder text-center" id="previewCanvas"></div>
   <div class="card-body">
     <p class="card-text">
       This is the preview of the generated QR code. Also you can download it as PNG.
@@ -14,7 +13,9 @@
           <button type="button" class="btn btn-sm btn-outline-success">Download</button>
         </a>
       </div>
-      <small class="text-muted"><abbr title="Creation time of the generated QR code">UD</abbr>: {{ updateTime }}</small>
+      <small class="text-muted">
+        <abbr title="Creation time of the generated QR code">UD</abbr>: {{ updateTime }}
+      </small>
     </div>
   </div>
 </div>
