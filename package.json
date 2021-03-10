@@ -25,7 +25,7 @@
   "homepage": "https://github.com/CreativeZoller/qrapp-bs#readme",
   "husky": {
     "hooks": {
-      "pre-commit": "run-s format"
+      "pre-commit": "pretty-quick --staged"
     }
   },
   "scripts": {
@@ -38,8 +38,7 @@
     "postinstall": "npm prune",
     "start-pwa": "ng build --prod && http-server -p 8080 -c-1 dist/qrapp-bs",
     "predeploy": "ng build --prod --base-href=/qrapp-bs/",
-    "deploy": "npx gh-pages -d dist/qrapp-bs",
-    "format": "pretty-quick --staged"
+    "deploy": "npx gh-pages -d dist/qrapp-bs"
   },
   "dependencies": {
     "@angular/animations": "~11.2.3",
