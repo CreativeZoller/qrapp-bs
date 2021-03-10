@@ -25,7 +25,7 @@
   "homepage": "https://github.com/CreativeZoller/qrapp-bs#readme",
   "husky": {
     "hooks": {
-      "pre-commit": "run-s format:fix lint"
+      "pre-commit": "run-s format"
     }
   },
   "scripts": {
@@ -33,13 +33,13 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test --detect-open-handles",
-    "lint": "ng lint",
+    "lint": "prettier --check .",
     "e2e": "ng e2e",
     "postinstall": "npm prune",
     "start-pwa": "ng build --prod && http-server -p 8080 -c-1 dist/qrapp-bs",
     "predeploy": "ng build --prod --base-href=/qrapp-bs/",
     "deploy": "npx gh-pages -d dist/qrapp-bs",
-    "format:fix": "pretty-quick --staged"
+    "format": "pretty-quick --staged"
   },
   "dependencies": {
     "@angular/animations": "~11.2.3",
@@ -83,6 +83,7 @@
     "karma-coverage": "~2.0.3",
     "luxon": "^1.26.0",
     "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "protractor": "~7.0.0",
     "ts-jest": "^26.5.3",
