@@ -1,7 +1,7 @@
 
 # TODO list for the QR Code generator
 
-## _Current version 0.0.3_
+## _Current version 0.0.41_
 
 [![Build Status](https://travis-ci.com/CreativeZoller/qrapp-bs.svg?branch=master)](https://travis-ci.com/CreativeZoller/qrapp-bs)
 
@@ -10,8 +10,6 @@ Qrapp-bs is currently in an MVP state. There could be a lot of bugs, which would
 ## Work to be done
 
 - add Husky pre-commit check
-- check and fix the template-part validation message malfunctions
-- check and fix clear/reset post style issues with form field validation
 - add advanced options to the create form
 - add proper validation to the advanced parts
 - add proper unit testing fix to the project
