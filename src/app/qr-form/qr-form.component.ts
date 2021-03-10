@@ -21,9 +21,9 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   showOriginal = false;
   originalCanvas: any;
   destinationCanvas: any;
-  ipAddress: any;
+  // ipAddress: any;
   timeStamp: any;
-  baseTextDefaultValue = 'Please type in the main content of the code';
+  baseTextDefaultValue = 'Please enter the content';
   baseWidthDefaultValue = '420';
 
 
@@ -32,10 +32,10 @@ export class QrFormComponent implements OnInit, AfterViewInit {
     public util: CallService,
     private http: HttpClient
   ) {
-    this.http.get<{IPv4:string}>('https://geoip-db.com/json/')
-    .subscribe( data => {
-      this.ipAddress = data.IPv4
-    });
+    // this.http.get<{IPv4:string}>('https://geoip-db.com/json/')
+    // .subscribe( data => {
+    //   this.ipAddress = data.IPv4
+    // });
   }
 
   ngOnInit(): void {
@@ -76,11 +76,12 @@ export class QrFormComponent implements OnInit, AfterViewInit {
   }
 
   resetToDefaults() {
-    // this.showMoreSettings();
+    this.showMoreSettings();
     this.qrCodeSettings = {};
     if (this.destinationCanvas && this.destinationCanvas.hasChildNodes()) {
       this.destinationCanvas.removeChild(this.destinationCanvas.childNodes[0]);
     }
+    this.util.sendEmit(false);
     this.qrCodeForm.patchValue({
       basicText: this.baseTextDefaultValue,
       basicWidth: this.baseWidthDefaultValue,
